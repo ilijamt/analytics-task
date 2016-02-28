@@ -2,6 +2,8 @@ I propose a simple API system that can be used for data collection, which has th
 
 If we need increase capacity we can always scale the system on multiple machines.
 
+One thing to note is that every request that goes to the API returns an **X-Response-Time** header which tells you how long it took to execute the whole command, until the end.
+
 * **GET /**
 
 HTML Page 
