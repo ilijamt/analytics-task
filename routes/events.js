@@ -2,7 +2,7 @@
 var path = require('path');
 var config = require('./../config.js');
 var Events = require(path.join(config.tools.path, 'Events.js'));
-var _ = require("lodash");
+var _ = require('lodash');
 
 var RouteEntry = function RouteEntry() {
   var router = require('express').Router();
@@ -13,18 +13,18 @@ var RouteEntry = function RouteEntry() {
       {
         uri: '/',
         method: ['GET'],
-        description: "Get all the events in the system, this is without any filtering"
+        description: 'Get all the events in the system, this is without any filtering'
       },
       {
         uri: '/query',
         method: ['POST'],
-        description: "Get the events from the database",
+        description: 'Get the events from the database',
         parameters: {
-          page: "Which page to show",
-          limit: "How many items to show per page",
-          startDate: "Set a start date in unix timestamp, if empty it will include all items from the start",
-          endDate: "Set an end date in unix timestamp, if empty it will include all items until",
-          eventType: "If set it will filter by an event, can be an array for multiple events"
+          page: 'Which page to show',
+          limit: 'How many items to show per page',
+          startDate: 'Set a start date in unix timestamp, if empty it will include all items from the start',
+          endDate: 'Set an end date in unix timestamp, if empty it will include all items until',
+          eventType: 'If set it will filter by an event, can be an array for multiple events'
         }
       },
       {

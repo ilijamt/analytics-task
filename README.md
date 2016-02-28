@@ -2,11 +2,15 @@ I propose a simple API system that can be used for data collection, which has th
 
 If we need increase capacity we can always scale the system on multiple machines.
 
+* **GET /**
+
+HTML Page 
+
 * **OPTIONS \***
 
 Allows cross domain for all URLS 
 
-* **GET /**
+* **GET /help**
 
 A list of available functionality in the system
 

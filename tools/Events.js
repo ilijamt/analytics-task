@@ -4,7 +4,7 @@ var path = require('path');
 var eventProcessors = require(path.join(config.processors.path, 'events.js'));
 var redis = require(path.join(config.tools.path, 'redis.js'));
 var mongo = require(path.join(config.tools.path, 'mongodb.js'));
-var _ = require("lodash");
+var _ = require('lodash');
 
 var Events = function Events() {
   this.buffer = [];
@@ -43,12 +43,12 @@ Events.prototype.getEventsPaging = function getEvents(query, page, limit, callba
 
   cursorCount.count(function(err, count) {
 
-      var cursor = collection.find(query, {'_id': false});
+    var cursor = collection.find(query, {'_id': false});
 
-      cursor.skip(page * limit);
-      cursor.limit(limit);
+    cursor.skip(page * limit);
+    cursor.limit(limit);
 
-      cursor.toArray(function(err, docs) {
+    cursor.toArray(function(err, docs) {
         callback(err, {
           page: page + 1,
           totalPages: Math.ceil(count / limit),
@@ -56,7 +56,7 @@ Events.prototype.getEventsPaging = function getEvents(query, page, limit, callba
           events: docs
         });
       });
-    }
+  }
   );
 };
 
@@ -67,7 +67,7 @@ Events.prototype.getEventsPaging = function getEvents(query, page, limit, callba
  */
 Events.prototype.getStats = function getStats(callback) {
 
-  redis.client.keys(config.processors.modules.redisStats.baseKey + "*", function(err, obj) {
+  redis.client.keys(config.processors.modules.redisStats.baseKey + '*', function(err, obj) {
     if (err) {
       console.error(err);
       return callback(err);

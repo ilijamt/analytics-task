@@ -9,8 +9,8 @@ var ProgressBar = require('progress');
 var startDate = moment().subtract(1, 'days');
 var endDate = moment();
 
-var startTime = startDate.format("X");
-var endTime = endDate.format("X");
+var startTime = startDate.format('X');
+var endTime = endDate.format('X');
 
 var yargs = require('yargs')
   .usage('Usage: $0 <options>')
@@ -123,13 +123,13 @@ var bar = new ProgressBar('[:bar] :percent :etas', {
 var processRequests = function() {
   async.timesLimit(elementsPerIteration, argv.concurrency, function(item, callback) {
     request.post({
-        url: argv.uri,
-        form: {
+      url: argv.uri,
+      form: {
           event_type: _.sample(events),
           ts: randomIntBetween(argv.startTime, argv.endTime),
           params: createRandomObj(randomIntBetween(0, 5))
         }
-      },
+    },
       function() {
         callback();
       });

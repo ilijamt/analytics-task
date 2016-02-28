@@ -51,7 +51,7 @@ app.get('/help', function(req, res) {
   var response = {
     message: 'Move along nothing to see here.',
     routes: {
-      "/help": "Shows the magical help"
+      '/help': 'Shows the magical help'
     }
   };
   response.routes[config.express.apiEndpoint] = routes;

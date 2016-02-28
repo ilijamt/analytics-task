@@ -2,7 +2,7 @@
 var path = require('path');
 var config = require('./../config.js');
 var Events = require(path.join(config.tools.path, 'Events.js'));
-var _ = require("lodash");
+var _ = require('lodash');
 
 var RouteEntry = function RouteEntry() {
   var router = require('express').Router();
@@ -13,9 +13,9 @@ var RouteEntry = function RouteEntry() {
       {
         uri: '/:type?',
         method: ['GET'],
-        description: "Gets the stats for the latest " + config.processors.modules.redisStats.ttl[1] + config.processors.modules.redisStats.ttl[0],
+        description: 'Gets the stats for the latest ' + config.processors.modules.redisStats.ttl[1] + config.processors.modules.redisStats.ttl[0],
         params: {
-          ":type": "Can be any event type we need"
+          ':type': 'Can be any event type we need'
         }
       }
     ]

@@ -65,10 +65,10 @@ var Processor = function Processor(data) {
   _.each(groupedEventsByType, function(events, event) {
     var groupedEvents = _.groupBy(events, groupByTimeHandler);
     _.each(groupedEvents, function(events, timestamp) {
-      var timestampKey = moment(parseInt(timestamp)).format("X");
+      var timestampKey = moment(parseInt(timestamp)).format('X');
       var period = config.processors.modules.redisStats.ttl[0];
       var add = config.processors.modules.redisStats.ttl[1];
-      var expireAt = moment(parseInt(timestamp)).add(add, period).format("X");
+      var expireAt = moment(parseInt(timestamp)).add(add, period).format('X');
       var key = eventStoreKey({timestamp: timestampKey});
       // this can be further optimized to check if the key exists and if it doesn't create it and then set the TTL
       queue.push(['hmset', key, '__timestamp', timestampKey], ['hincrby', key, event, events.length], ['expireat', key, expireAt]);
