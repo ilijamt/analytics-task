@@ -1,0 +1,34 @@
+{
+  "name": "getsocial",
+  "version": "1.0.0",
+  "description": "GetSocial Analytics API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^1.5.2",
+    "biguint-format": "^1.0.0",
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "debug": "^2.2.0",
+    "express": "^4.13.4",
+    "flake-idgen": "^1.0.0",
+    "lodash": "^4.5.1",
+    "moment": "^2.11.2",
+    "mongodb": "^2.1.7",
+    "npid": "^0.4.0",
+    "redis": "^2.4.2",
+    "response-time": "^2.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^2.2.0",
+    "eslint-config-google": "^0.4.0",
+    "eslint-config-xo": "^0.11.0",
+    "progress": "^1.1.8",
+    "request": "^2.69.0",
+    "yargs": "^4.2.0"
+  }
+}

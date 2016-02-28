@@ -1,0 +1,24 @@
+{
+  "extends": "google",
+  "env": {
+    "browser": false,
+    "node": true
+  },
+  "rules": {
+    "quotes": [
+      2,
+      "single",
+      "avoid-escape"
+    ],
+    "max-len": [
+      1,
+      120,
+      4,
+      {
+        "ignoreComments": true,
+        "ignoreUrls": true
+      }
+    ]
+  }
+}
+

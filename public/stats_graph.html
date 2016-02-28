@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Events Statistics</title>
+
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/rickshaw/1.5.1/rickshaw.min.css">
+    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.1/lodash.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rickshaw/1.5.1/rickshaw.min.js"></script>
+</head>
+<body>
+
+<div id="chart_container">
+    <div id="chart"></div>
+    <div id="legend_container">
+        <div id="smoother" title="Smoothing"></div>
+        <div id="legend"></div>
+    </div>
+    <div id="slider"></div>
+</div>
+
+<script>
+
+    var seriesData = [];
+    var graph = null;
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    $.get("/api/stats", function(data) {
+
+        var seriesData = {};
+        var series = [];
+
+        _.each(data, function(dataSeries, eventType) {
+            seriesData[eventType] = [];
+            seriesData[eventType] = _.map(dataSeries, function(value, key) {
+                return {
+                    x: parseInt(key),
+                    y: value
+                };
+            });
+        });
+
+        _.each(_.keys(seriesData), function(key) {
+            series.push({
+                color: getRandomColor(),
+                data: seriesData[key],
+                name: key
+            });
+        });
+
+        graph = new Rickshaw.Graph({
+            element: document.getElementById("chart"),
+            width: 1920,
+            height: 800,
+            renderer: 'line',
+            series: series
+        });
+
+        graph.render();
+
+        var hoverDetail = new Rickshaw.Graph.HoverDetail({
+            graph: graph
+        });
+
+        var legend = new Rickshaw.Graph.Legend({
+            graph: graph,
+            element: document.getElementById('legend')
+        });
+
+        var shelving = new Rickshaw.Graph.Behavior.Series.Toggle({
+            graph: graph,
+            legend: legend
+        });
+
+        var axes = new Rickshaw.Graph.Axis.Time({
+            graph: graph
+        });
+        axes.render();
+
+    });
+
+
+</script>
+</body>
+</html>
